@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://ci8gy2sr8agmf"]
+
+[ext_resource type="Script" uid="uid://r7ahvrqgunso" path="res://Assets/3D/Card/card.gd" id="1_3c6jg"]
+[ext_resource type="Texture2D" uid="uid://bp15yqlaxivh3" path="res://Assets/Texture/Card/card_back.png" id="2_2e3e2"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qvomo"]
+size = Vector2(1, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_so316"]
+load_path = "res://.godot/imported/card_clubs_02.png-08b7928c29d855ef74523cd218522d5f.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ki6g4"]
+transparency = 1
+albedo_texture = SubResource("CompressedTexture2D_so316")
+uv1_scale = Vector3(0.65, 0.93, 1)
+uv1_offset = Vector3(0.175, 0.035, 0)
+point_size = 128.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ojm3s"]
+transparency = 1
+albedo_texture = ExtResource("2_2e3e2")
+uv1_scale = Vector3(0.65, 0.93, 1)
+uv1_offset = Vector3(0.175, 0.035, 0)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ts7d7"]
+size = Vector2(1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hrxfi"]
+albedo_color = Color(0.1882353, 0.24313726, 0.3254902, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vqfc1"]
+material = SubResource("StandardMaterial3D_hrxfi")
+
+[node name="Card" type="Node3D" unique_id=121556447]
+script = ExtResource("1_3c6jg")
+
+[node name="Front" type="MeshInstance3D" parent="." unique_id=877877548]
+transform = Transform3D(4.2898564, 0, 0, 0, 0.1, 0, 0, 0, 8.314812, 0, 0.051, 0)
+mesh = SubResource("PlaneMesh_qvomo")
+surface_material_override/0 = SubResource("StandardMaterial3D_ki6g4")
+
+[node name="Back" type="MeshInstance3D" parent="." unique_id=364163722]
+transform = Transform3D(-4.2898564, 8.742278e-09, 0, -3.7503116e-07, -0.1, 0, 0, 0, 8.314812, 0, -0.051, 0)
+material_override = SubResource("StandardMaterial3D_ojm3s")
+mesh = SubResource("PlaneMesh_ts7d7")
+
+[node name="Border" type="MeshInstance3D" parent="." unique_id=482626152]
+transform = Transform3D(4.2898564, 0, 0, 0, 0.1, 0, 0, 0, 8.314812, 0, 0, 0)
+mesh = SubResource("BoxMesh_vqfc1")

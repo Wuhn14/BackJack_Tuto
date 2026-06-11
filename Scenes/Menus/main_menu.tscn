@@ -1,0 +1,334 @@
+[gd_scene format=3 uid="uid://41fw3baqltvq"]
+
+[ext_resource type="PackedScene" uid="uid://dq3cicpcy5y1t" path="res://Assets/3D/Chips_fix/black_chips.tscn" id="1_5wi6m"]
+[ext_resource type="Script" uid="uid://bmcberwli2yl2" path="res://Scripts/menu/turn_table.gd" id="1_chkef"]
+[ext_resource type="PackedScene" uid="uid://ngso5m47vryb" path="res://Assets/3D/Chips_fix/blue_chips.tscn" id="2_chkef"]
+[ext_resource type="PackedScene" uid="uid://8jrprxnanmaw" path="res://Assets/3D/Chips_fix/green_chips.tscn" id="3_neey8"]
+[ext_resource type="PackedScene" uid="uid://cp8kk3q43baog" path="res://Assets/3D/Chips_fix/red_chips.tscn" id="4_4fgt5"]
+[ext_resource type="PackedScene" uid="uid://co2h6tf8rxqly" path="res://Assets/3D/Chips_fix/white_chips.tscn" id="5_j4kqa"]
+[ext_resource type="FontFile" uid="uid://sqd2kntw3ela" path="res://Assets/FONT/Bungee/Bungee-Regular.ttf" id="7_4fgt5"]
+[ext_resource type="Script" uid="uid://sy5sl5u3llhm" path="res://Scripts/menu/main_menu.gd" id="7_j4kqa"]
+[ext_resource type="FontFile" uid="uid://deylf4dvequhy" path="res://Assets/FONT/Bitcount_Single/BitcountSingle-VariableFont_CRSV,ELSH,ELXP,slnt,wght.ttf" id="8_j4kqa"]
+[ext_resource type="FontFile" uid="uid://cqm1024iu2ofi" path="res://Assets/FONT/Bebas_Neue/BebasNeue-Regular.ttf" id="10_anmaw"]
+[ext_resource type="FontFile" uid="uid://2m10u4ndhc5q" path="res://Assets/FONT/Bitcount_Single/static/BitcountSingle-Black.ttf" id="11_ftsii"]
+
+[sub_resource type="Environment" id="Environment_anmaw"]
+background_mode = 1
+background_color = Color(0.015316631, 0.09364531, 0.0153153315, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.37791893, 0.37791884, 0.37791875, 1)
+ambient_light_energy = 2.0
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ftsii"]
+albedo_color = Color(0.07058824, 0.21960784, 0.07058824, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lg1h6"]
+material = SubResource("StandardMaterial3D_ftsii")
+size = Vector3(1000, 1, 1000)
+
+[node name="MainMenu" type="Node3D" unique_id=1027467578]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=598769728]
+environment = SubResource("Environment_anmaw")
+
+[node name="background" type="Node3D" parent="." unique_id=1044936398]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="background" unique_id=804818870]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 1.7715633, 6.4287763, 0.36212826)
+light_color = Color(1, 1, 0.627451, 1)
+light_energy = 10.879
+spot_range = 11.454739
+spot_angle = 41.336563
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="background" unique_id=1859509209]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.387023, 0, 0)
+mesh = SubResource("BoxMesh_lg1h6")
+
+[node name="Chips" type="Node3D" parent="background" unique_id=341217968]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7088487, 0, 1.1185765)
+script = ExtResource("1_chkef")
+
+[node name="BlackChips" parent="background/Chips" unique_id=160636676 instance=ExtResource("1_5wi6m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4162257, 0.497, 0)
+
+[node name="BlackChips2" parent="background/Chips" unique_id=1880857961 instance=ExtResource("1_5wi6m")]
+transform = Transform3D(0.31579813, 0, -0.9488264, 0, 1, 0, 0.9488264, 0, 0.31579813, -1.4162257, 0.6838852, 0)
+
+[node name="BlackChips3" parent="background/Chips" unique_id=1839028457 instance=ExtResource("1_5wi6m")]
+transform = Transform3D(-0.24730343, 0, -0.96893823, 0, 1, 0, 0.96893823, 0, -0.24730343, -1.3798939, 0.8673413, 0)
+
+[node name="BlackChips4" parent="background/Chips" unique_id=73731160 instance=ExtResource("1_5wi6m")]
+transform = Transform3D(-0.5167783, -0.5550773, -0.65178937, -0.33951232, 0.8317797, -0.43917468, 0.78592104, -0.005665467, -0.6183012, -2.386361, 1.0323651, 0)
+
+[node name="BlueChips" parent="background/Chips" unique_id=2112539599 instance=ExtResource("2_chkef")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9606507, 0.497, -2.1365469)
+
+[node name="BlueChips2" parent="background/Chips" unique_id=1003057887 instance=ExtResource("2_chkef")]
+transform = Transform3D(0.86898583, 0, -0.49483696, 0, 1, 0, 0.49483696, 0, 0.86898583, -0.9606507, 0.6846719, -2.1365469)
+
+[node name="GreenChips" parent="background/Chips" unique_id=355056134 instance=ExtResource("3_neey8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2670381, 0.497, -2.8716238)
+
+[node name="RedChips" parent="background/Chips" unique_id=192536726 instance=ExtResource("4_4fgt5")]
+transform = Transform3D(0.9786814, 0, -0.20538436, 0, 1, 0, 0.20538436, 0, 0.9786814, -0.23542607, 0.497, 1.5819974)
+
+[node name="RedChips6" parent="background/Chips" unique_id=653003925 instance=ExtResource("4_4fgt5")]
+transform = Transform3D(0.08269482, 0.04302396, -0.99564576, 0.034466483, 0.9983465, 0.04600334, 0.9959787, -0.038120657, 0.081075214, 1.4586837, 0.497, 2.869077)
+
+[node name="RedChips5" parent="background/Chips" unique_id=1505149670 instance=ExtResource("4_4fgt5")]
+transform = Transform3D(0.98218244, 0, 0.1879299, 0, 1, 0, -0.1879299, 0, 0.98218244, 1.7706275, 0.497, 0.8912332)
+
+[node name="RedChips2" parent="background/Chips" unique_id=296689236 instance=ExtResource("4_4fgt5")]
+transform = Transform3D(0.86001265, 0, -0.51027274, 0, 1, 0, 0.51027274, 0, 0.86001265, 0.9845345, 0.6719465, 1.7725387)
+
+[node name="RedChips3" parent="background/Chips" unique_id=320932837 instance=ExtResource("4_4fgt5")]
+transform = Transform3D(0.9922041, 0, 0.12462326, 0, 1, 0, -0.12462326, 0, 0.9922041, 1.4533055, 0.8422279, 1.7725387)
+
+[node name="RedChips4" parent="background/Chips" unique_id=311479066 instance=ExtResource("4_4fgt5")]
+transform = Transform3D(0.8314696, 0, 0.55557024, 0, 1, 0, -0.55557024, 0, 0.8314696, 1.1355786, 1.0195069, 1.7725387)
+
+[node name="WhiteChips" parent="background/Chips" unique_id=1342038984 instance=ExtResource("5_j4kqa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6597533, 0.497, -0.8535533)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=183300659]
+transform = Transform3D(1, 0, 0, 0, 0.9427522, 0.33349428, 0, -0.33349428, 0.9427522, -0.926, 3.043, 6.698)
+
+[node name="Main_menu_UI" type="Control" parent="Camera3D" unique_id=317774016]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_j4kqa")
+
+[node name="Title" type="Label" parent="Camera3D/Main_menu_UI" unique_id=143977991]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 30.0
+offset_right = 220.0
+offset_bottom = 70.0
+theme_override_fonts/font = ExtResource("7_4fgt5")
+theme_override_font_sizes/font_size = 58
+text = "BLACKJACK"
+uppercase = true
+
+[node name="Main_menu_button" type="VBoxContainer" parent="Camera3D/Main_menu_UI" unique_id=1064026637]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -12.0
+offset_right = 160.0
+offset_bottom = 251.0
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="NEW" type="Button" parent="Camera3D/Main_menu_UI/Main_menu_button" unique_id=2121657937]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("8_j4kqa")
+theme_override_font_sizes/font_size = 28
+text = "NEW GAME"
+alignment = 0
+icon_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="CONTINUE" type="Button" parent="Camera3D/Main_menu_UI/Main_menu_button" unique_id=410699277]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("8_j4kqa")
+theme_override_font_sizes/font_size = 28
+text = "CONTINUE"
+alignment = 0
+icon_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="SETTINGS" type="Button" parent="Camera3D/Main_menu_UI/Main_menu_button" unique_id=99425258]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("8_j4kqa")
+theme_override_font_sizes/font_size = 28
+text = "SETTINGS"
+alignment = 0
+icon_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ABOUT" type="Button" parent="Camera3D/Main_menu_UI/Main_menu_button" unique_id=915900564]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("8_j4kqa")
+theme_override_font_sizes/font_size = 28
+text = "ABOUT"
+alignment = 0
+icon_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="QUIT" type="Button" parent="Camera3D/Main_menu_UI/Main_menu_button" unique_id=617397374]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("8_j4kqa")
+theme_override_font_sizes/font_size = 28
+text = "QUIT"
+alignment = 0
+icon_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="AboutMenu" type="ColorRect" parent="Camera3D/Main_menu_UI" unique_id=2041732131]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.8352941)
+
+[node name="aboutT" type="Label" parent="Camera3D/Main_menu_UI/AboutMenu" unique_id=941781673]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -104.0
+offset_right = 104.0
+offset_bottom = 78.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("7_4fgt5")
+theme_override_font_sizes/font_size = 58
+text = "about"
+uppercase = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Camera3D/Main_menu_UI/AboutMenu" unique_id=1172455781]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -250.0
+offset_right = 500.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("10_anmaw")
+theme_override_font_sizes/normal_font_size = 40
+text = "Ceci est juste le resultat d'un tuto suivie en modifiant bien évidement le contenue pour que celui ci soit supérieur au tuto
+"
+fit_content = true
+scroll_active = false
+tab_size = 6
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="About_back" type="Button" parent="Camera3D/Main_menu_UI/AboutMenu" unique_id=1212509556]
+custom_minimum_size = Vector2(60, 50)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = -90.0
+offset_right = 216.0
+offset_bottom = -40.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("8_j4kqa")
+theme_override_font_sizes/font_size = 45
+text = "BACK"
+alignment = 0
+icon_alignment = 1
+
+[node name="SettingsMenu" type="ColorRect" parent="Camera3D/Main_menu_UI" unique_id=2077067742]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.8352941)
+
+[node name="settingsT" type="Label" parent="Camera3D/Main_menu_UI/SettingsMenu" unique_id=435419372]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -104.0
+offset_right = 104.0
+offset_bottom = 78.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("7_4fgt5")
+theme_override_font_sizes/font_size = 58
+text = "about"
+uppercase = true
+
+[node name="settingsBack" type="Button" parent="Camera3D/Main_menu_UI/SettingsMenu" unique_id=1677561741]
+custom_minimum_size = Vector2(60, 50)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = -90.0
+offset_right = 216.0
+offset_bottom = -40.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("8_j4kqa")
+theme_override_font_sizes/font_size = 45
+text = "BACK"
+alignment = 0
+icon_alignment = 1
+
+[node name="SettingsItems" type="VBoxContainer" parent="Camera3D/Main_menu_UI/SettingsMenu" unique_id=1649460937]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 128.0
+offset_top = -184.79999
+offset_right = 392.0
+offset_bottom = 184.79999
+grow_vertical = 2
+alignment = 1
+
+[node name="Sound" type="HBoxContainer" parent="Camera3D/Main_menu_UI/SettingsMenu/SettingsItems" unique_id=1690978790]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Camera3D/Main_menu_UI/SettingsMenu/SettingsItems/Sound" unique_id=2033022216]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("11_ftsii")
+theme_override_font_sizes/font_size = 30
+text = "SOUNDS :"
+
+[node name="SoundsSwitch" type="CheckButton" parent="Camera3D/Main_menu_UI/SettingsMenu/SettingsItems/Sound" unique_id=1283202621]
+modulate = Color(0, 1, 0, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+button_pressed = true
+text = "ON"
+
+[node name="Fullscreen" type="HBoxContainer" parent="Camera3D/Main_menu_UI/SettingsMenu/SettingsItems" unique_id=135869149]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Camera3D/Main_menu_UI/SettingsMenu/SettingsItems/Fullscreen" unique_id=457627271]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("11_ftsii")
+theme_override_font_sizes/font_size = 30
+text = "FULLSCREEN :"
+
+[node name="FullscreenSwitch" type="CheckButton" parent="Camera3D/Main_menu_UI/SettingsMenu/SettingsItems/Fullscreen" unique_id=1741192679]
+modulate = Color(0, 1, 0, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+button_pressed = true
+text = "ON"
+
+[connection signal="pressed" from="Camera3D/Main_menu_UI/Main_menu_button/NEW" to="Camera3D/Main_menu_UI" method="_on_new_pressed"]
+[connection signal="pressed" from="Camera3D/Main_menu_UI/Main_menu_button/CONTINUE" to="Camera3D/Main_menu_UI" method="_on_continue_pressed"]
+[connection signal="pressed" from="Camera3D/Main_menu_UI/Main_menu_button/SETTINGS" to="Camera3D/Main_menu_UI" method="_on_settings_pressed"]
+[connection signal="pressed" from="Camera3D/Main_menu_UI/Main_menu_button/ABOUT" to="Camera3D/Main_menu_UI" method="_on_about_pressed"]
+[connection signal="pressed" from="Camera3D/Main_menu_UI/Main_menu_button/QUIT" to="Camera3D/Main_menu_UI" method="_on_quit_pressed"]
+[connection signal="pressed" from="Camera3D/Main_menu_UI/AboutMenu/About_back" to="Camera3D/Main_menu_UI" method="_on_about_back_pressed"]
+[connection signal="pressed" from="Camera3D/Main_menu_UI/SettingsMenu/settingsBack" to="Camera3D/Main_menu_UI" method="_on_settings_back_pressed"]
+[connection signal="toggled" from="Camera3D/Main_menu_UI/SettingsMenu/SettingsItems/Sound/SoundsSwitch" to="Camera3D/Main_menu_UI" method="_on_sounds_switch_toggled"]
+[connection signal="toggled" from="Camera3D/Main_menu_UI/SettingsMenu/SettingsItems/Fullscreen/FullscreenSwitch" to="Camera3D/Main_menu_UI" method="_on_fullscreen_switch_toggled"]

@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dq3cicpcy5y1t"]
+
+[ext_resource type="PackedScene" uid="uid://cxp1ippbmabc8" path="res://Assets/3D/Chips/BlackChips.glb" id="1_t51wc"]
+
+[node name="BlackChips" unique_id=160636676 instance=ExtResource("1_t51wc")]
+
+[node name="chips_171_chips_black_bake_0" parent="." index="0" unique_id=1254744398]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0.097, 0)

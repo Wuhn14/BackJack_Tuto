@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://dp8q71eegx2rb"]
+
+[ext_resource type="PackedScene" uid="uid://crv3upbolbno7" path="res://Assets/3D/Table/casino_poker_table.glb" id="1_t7sy5"]
+
+[node name="Sketchfab_Scene" unique_id=2109454905 instance=ExtResource("1_t7sy5")]

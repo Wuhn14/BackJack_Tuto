@@ -1,0 +1,252 @@
+[gd_scene format=3 uid="uid://e7hgr1mp5g2p"]
+
+[ext_resource type="Script" uid="uid://4vf37f2ljc1b" path="res://Scripts/global/game_manager.gd" id="1_vifcx"]
+[ext_resource type="FontFile" uid="uid://cq2cjss6oyxvt" path="res://Assets/FONT/Alfa_Slab_One/AlfaSlabOne-Regular.ttf" id="2_i1e5p"]
+[ext_resource type="FontFile" uid="uid://sqd2kntw3ela" path="res://Assets/FONT/Bungee/Bungee-Regular.ttf" id="2_vifcx"]
+[ext_resource type="FontFile" uid="uid://cqm1024iu2ofi" path="res://Assets/FONT/Bebas_Neue/BebasNeue-Regular.ttf" id="3_ciybh"]
+[ext_resource type="Script" uid="uid://b4cmaf27ykdtn" path="res://Scripts/menu/container.gd" id="5_huoen"]
+[ext_resource type="Script" uid="uid://d1iat3xctx0rn" path="res://Scripts/menu/ace_value_dialog.gd" id="6_7jvlm"]
+[ext_resource type="PackedScene" uid="uid://dp8q71eegx2rb" path="res://Assets/3D/Table_Fix/table.tscn" id="6_qtymf"]
+[ext_resource type="PackedScene" uid="uid://ctmx1hkdm3gr6" path="res://Scenes/Game/Object/Chips.tscn" id="7_vifcx"]
+[ext_resource type="PackedScene" uid="uid://dt0xpoosljvjk" path="res://Scenes/Game/Object/Cards.tscn" id="7_xfil1"]
+
+[sub_resource type="Environment" id="Environment_ypmwd"]
+background_mode = 1
+background_color = Color(0.015316631, 0.09364531, 0.0153153315, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.37791893, 0.37791884, 0.37791875, 1)
+ambient_light_energy = 2.0
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ftsii"]
+albedo_color = Color(0.007404149, 0.047547393, 0.0073974496, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_oejk7"]
+material = SubResource("StandardMaterial3D_ftsii")
+size = Vector3(1000, 1, 1000)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_huoen"]
+bg_color = Color(0, 0, 0, 0.3137255)
+
+[node name="Game" type="Node3D" unique_id=1943415281]
+script = ExtResource("1_vifcx")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=203336487]
+environment = SubResource("Environment_ypmwd")
+
+[node name="background" type="Node3D" parent="." unique_id=823093149]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="background" unique_id=1257865839]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 3.3508568, 30, -0.5834055)
+light_color = Color(1, 1, 0.627451, 1)
+light_energy = 9.079
+spot_range = 22.62795
+spot_angle = 62.642433
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="background" unique_id=1510490480]
+mesh = SubResource("BoxMesh_oejk7")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1532269301]
+transform = Transform3D(1, 0, 0, 0, 0.58070296, 0.8141155, 0, -0.8141155, 0.58070296, 3.127, 29.084, 15.901)
+
+[node name="Game_UI" type="Control" parent="Camera3D" unique_id=588963275]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MisePanel" type="VBoxContainer" parent="Camera3D/Game_UI" unique_id=1152820970]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -275.0
+offset_right = 144.0
+offset_bottom = -104.0
+grow_vertical = 0
+
+[node name="BetDone" type="Button" parent="Camera3D/Game_UI/MisePanel" unique_id=1740829741]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vifcx")
+text = "DONE"
+
+[node name="BetWhite" type="Button" parent="Camera3D/Game_UI/MisePanel" unique_id=1844572154]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vifcx")
+text = "BET 1 €"
+
+[node name="BetRed" type="Button" parent="Camera3D/Game_UI/MisePanel" unique_id=3447858]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vifcx")
+text = "BET 5 €"
+
+[node name="BetGreen" type="Button" parent="Camera3D/Game_UI/MisePanel" unique_id=2082938244]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vifcx")
+text = "BET 25 €"
+
+[node name="BetBlack" type="Button" parent="Camera3D/Game_UI/MisePanel" unique_id=2067441850]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vifcx")
+text = "BET 100 €"
+
+[node name="BetBlue" type="Button" parent="Camera3D/Game_UI/MisePanel" unique_id=1490585815]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vifcx")
+text = "BET 500 €"
+
+[node name="Info" type="Panel" parent="Camera3D/Game_UI" unique_id=692388698]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -80.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="YouHaveLabel" type="Label" parent="Camera3D/Game_UI/Info" unique_id=1511465205]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 25.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_vifcx")
+theme_override_font_sizes/font_size = 30
+text = "You have : "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="YourBetLabel" type="Label" parent="Camera3D/Game_UI/Info" unique_id=519501337]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_vifcx")
+theme_override_font_sizes/font_size = 30
+text = "You bet : "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameStateLabel" type="Label" parent="Camera3D/Game_UI" unique_id=2133110832]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -359.5
+offset_right = 359.5
+offset_bottom = 97.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_i1e5p")
+theme_override_font_sizes/font_size = 45
+theme_override_styles/normal = SubResource("StyleBoxFlat_huoen")
+text = "Place your beat"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="WarningMess" type="Label" parent="Camera3D/Game_UI" unique_id=473819311]
+visible = false
+custom_minimum_size = Vector2(500, 250)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_ciybh")
+theme_override_font_sizes/font_size = 50
+text = "Bet minimum 1€ for DONE !"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+uppercase = true
+
+[node name="Ask" type="Container" parent="Camera3D/Game_UI" unique_id=1257875980 node_paths=PackedStringArray("Ace_Value_Ask")]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_huoen")
+Ace_Value_Ask = NodePath("AceValueDialog")
+
+[node name="AceValueDialog" type="ConfirmationDialog" parent="Camera3D/Game_UI/Ask" unique_id=1601653645]
+oversampling_override = 1.0
+title = "Ace Value"
+initial_position = 2
+size = Vector2i(200, 80)
+ok_button_text = "1"
+dialog_close_on_escape = false
+cancel_button_text = "11"
+script = ExtResource("6_7jvlm")
+metadata/_custom_type_script = "uid://d1iat3xctx0rn"
+
+[node name="HitStandPanel" type="VBoxContainer" parent="Camera3D/Game_UI" unique_id=1076423472]
+layout_mode = 0
+offset_left = 952.0
+offset_top = 384.0
+offset_right = 1152.0
+offset_bottom = 512.0
+
+[node name="hit_Button" type="Button" parent="Camera3D/Game_UI/HitStandPanel" unique_id=376710005]
+custom_minimum_size = Vector2(30, 62)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vifcx")
+text = "HIT"
+
+[node name="stand_Button" type="Button" parent="Camera3D/Game_UI/HitStandPanel" unique_id=948027226]
+custom_minimum_size = Vector2(30, 62)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vifcx")
+text = "STAND"
+
+[node name="NewGame" type="Button" parent="Camera3D/Game_UI" unique_id=732591256]
+custom_minimum_size = Vector2(125, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.5
+offset_top = -25.0
+offset_right = 62.5
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "NEW GAME"
+icon_alignment = 1
+
+[node name="Table" parent="." unique_id=2109454905 instance=ExtResource("6_qtymf")]
+transform = Transform3D(0.33930504, 0.0007420495, 0.08585744, -0.0006108639, 0.3499989, -0.00061086484, -0.08585847, 0.0004423495, 0.3393053, 2.9616504, 0, -0.64223003)
+
+[node name="Chips" parent="." unique_id=390834184 instance=ExtResource("7_vifcx")]
+transform = Transform3D(0.6612857, 0, -0.75013417, 0, 1, 0, 0.75013417, 0, 0.6612857, 4.579266, 19.07879, 5.47086)
+
+[node name="PlayerCards" parent="." unique_id=1825191510 instance=ExtResource("7_xfil1")]
+transform = Transform3D(0.7000001, 0, 0, 0, 0.6999999, 0, 0, 0, 0.70000005, 2.31975, 19.152773, 9.606935)
+
+[node name="DealerCards" parent="." unique_id=1129918563 instance=ExtResource("7_xfil1")]
+transform = Transform3D(0.68574214, 0, 0.14056309, 0, 0.7, 0, -0.1405631, 0, 0.6857421, 2.31975, 19.152773, -4.25982)
+
+[connection signal="pressed" from="Camera3D/Game_UI/MisePanel/BetDone" to="." method="_on_bet_done_pressed"]
+[connection signal="pressed" from="Camera3D/Game_UI/MisePanel/BetWhite" to="." method="_on_bet_white_pressed"]
+[connection signal="pressed" from="Camera3D/Game_UI/MisePanel/BetRed" to="." method="_on_bet_red_pressed"]
+[connection signal="pressed" from="Camera3D/Game_UI/MisePanel/BetGreen" to="." method="_on_bet_green_pressed"]
+[connection signal="pressed" from="Camera3D/Game_UI/MisePanel/BetBlack" to="." method="_on_bet_black_pressed"]
+[connection signal="pressed" from="Camera3D/Game_UI/MisePanel/BetBlue" to="." method="_on_bet_blue_pressed"]
+[connection signal="pressed" from="Camera3D/Game_UI/HitStandPanel/hit_Button" to="." method="_on_hit_button_pressed"]
+[connection signal="pressed" from="Camera3D/Game_UI/HitStandPanel/stand_Button" to="." method="_on_stand_button_pressed"]
+[connection signal="pressed" from="Camera3D/Game_UI/NewGame" to="." method="_on_new_game_pressed"]

@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dt0xpoosljvjk"]
+
+[ext_resource type="Script" uid="uid://cbxkbe2xwa34j" path="res://Scripts/global/cards.gd" id="1_18dwc"]
+
+[node name="Cards" type="Node3D" unique_id=1825191510]
+script = ExtResource("1_18dwc")
+
+[node name="card_stack" type="Node3D" parent="." unique_id=453829621]

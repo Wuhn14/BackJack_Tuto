@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bwo0m6afce2qk"]
+
+[ext_resource type="Script" uid="uid://d18tgra0fnawx" path="res://Scripts/menu/ace_value.gd" id="1_ro3bm"]
+[ext_resource type="Script" uid="uid://d1iat3xctx0rn" path="res://Scripts/menu/ace_value_dialog.gd" id="2_323rm"]
+
+[node name="AceValue" type="Control" unique_id=1161818994 node_paths=PackedStringArray("Ace_Value_Ask")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ro3bm")
+Ace_Value_Ask = NodePath("AceValueDialog")
+
+[node name="AceValueDialog" type="ConfirmationDialog" parent="." unique_id=1201985615]
+oversampling_override = 1.0
+title = "Ace Value"
+initial_position = 1
+size = Vector2i(200, 80)
+visible = true
+ok_button_text = "1"
+dialog_close_on_escape = false
+cancel_button_text = "10"
+script = ExtResource("2_323rm")

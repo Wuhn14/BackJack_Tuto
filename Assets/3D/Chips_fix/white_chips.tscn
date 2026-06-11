@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://co2h6tf8rxqly"]
+
+[ext_resource type="PackedScene" uid="uid://b2wbmnbv865hu" path="res://Assets/3D/Chips/WhiteChips.glb" id="1_ggw2d"]
+
+[node name="WhiteChips" unique_id=1342038984 instance=ExtResource("1_ggw2d")]
+
+[node name="chips_496_chips_white_bake_0" parent="." index="0" unique_id=1947095152]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.097, 0)

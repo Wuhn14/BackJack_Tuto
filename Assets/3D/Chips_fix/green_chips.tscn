@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://8jrprxnanmaw"]
+
+[ext_resource type="PackedScene" uid="uid://c2i6808s6hwwa" path="res://Assets/3D/Chips/GreenChips.glb" id="1_eaf0f"]
+
+[node name="GreenChips" unique_id=355056134 instance=ExtResource("1_eaf0f")]
+
+[node name="chips_511_chips_green_bake_0" parent="." index="0" unique_id=468425316]
+transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, 1, 0, -0.99999994, -4.371139e-08, 0, 0.097, 0)
