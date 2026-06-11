@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://4vf37f2ljc1b" path="res://Scripts/global/game_manager.gd" id="1_vifcx"]
 [ext_resource type="FontFile" uid="uid://cq2cjss6oyxvt" path="res://Assets/FONT/Alfa_Slab_One/AlfaSlabOne-Regular.ttf" id="2_i1e5p"]
+[ext_resource type="Script" uid="uid://dda1ppojw6ayk" path="res://Scripts/menu/game_ui.gd" id="2_qtymf"]
 [ext_resource type="FontFile" uid="uid://sqd2kntw3ela" path="res://Assets/FONT/Bungee/Bungee-Regular.ttf" id="2_vifcx"]
 [ext_resource type="FontFile" uid="uid://cqm1024iu2ofi" path="res://Assets/FONT/Bebas_Neue/BebasNeue-Regular.ttf" id="3_ciybh"]
 [ext_resource type="Script" uid="uid://b4cmaf27ykdtn" path="res://Scripts/menu/container.gd" id="5_huoen"]
@@ -58,15 +59,16 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("2_qtymf")
 
 [node name="MisePanel" type="VBoxContainer" parent="Camera3D/Game_UI" unique_id=1152820970]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -275.0
+offset_top = -434.0
 offset_right = 144.0
-offset_bottom = -104.0
+offset_bottom = -234.0
 grow_vertical = 0
 
 [node name="BetDone" type="Button" parent="Camera3D/Game_UI/MisePanel" unique_id=1740829741]
@@ -177,9 +179,7 @@ autowrap_mode = 3
 uppercase = true
 
 [node name="Ask" type="Container" parent="Camera3D/Game_UI" unique_id=1257875980 node_paths=PackedStringArray("Ace_Value_Ask")]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
 script = ExtResource("5_huoen")
 Ace_Value_Ask = NodePath("AceValueDialog")
 
@@ -196,10 +196,11 @@ metadata/_custom_type_script = "uid://d1iat3xctx0rn"
 
 [node name="HitStandPanel" type="VBoxContainer" parent="Camera3D/Game_UI" unique_id=1076423472]
 layout_mode = 0
-offset_left = 952.0
-offset_top = 384.0
-offset_right = 1152.0
-offset_bottom = 512.0
+anchor_left = 0.6611111
+anchor_top = 0.47407407
+anchor_right = 0.8
+anchor_bottom = 0.6320988
+metadata/_edit_use_anchors_ = true
 
 [node name="hit_Button" type="Button" parent="Camera3D/Game_UI/HitStandPanel" unique_id=376710005]
 custom_minimum_size = Vector2(30, 62)
@@ -249,7 +250,7 @@ transform = Transform3D(0.7000001, 0, 0, 0, 0.6999999, 0, 0, 0, 0.70000005, 2.31
 transform = Transform3D(0.68574214, 0, 0.14056309, 0, 0.7, 0, -0.1405631, 0, 0.6857421, 2.31975, 19.152773, -4.25982)
 
 [node name="audio_source" type="AudioStreamPlayer3D" parent="." unique_id=1628461202]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3606949, 19.49268, -2.9894867)
+transform = Transform3D(0.8881044, 0, 0.45964187, 0, 1, 0, -0.45964187, 0, 0.8881044, 2.100985, 19.49268, -3.7754812)
 
 [node name="change" type="AudioStreamPlayer3D" parent="." unique_id=1304697685]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 55.947327, -29.78667)

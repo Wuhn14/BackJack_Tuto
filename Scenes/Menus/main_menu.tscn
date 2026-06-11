@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://41fw3baqltvq"]
 
 [ext_resource type="PackedScene" uid="uid://dq3cicpcy5y1t" path="res://Assets/3D/Chips_fix/black_chips.tscn" id="1_5wi6m"]
+[ext_resource type="Script" uid="uid://c2e2tnyccnhs5" path="res://Scripts/global/GameStart.gd" id="1_80s4p"]
 [ext_resource type="Script" uid="uid://bmcberwli2yl2" path="res://Scripts/menu/turn_table.gd" id="1_chkef"]
 [ext_resource type="PackedScene" uid="uid://ngso5m47vryb" path="res://Assets/3D/Chips_fix/blue_chips.tscn" id="2_chkef"]
+[ext_resource type="PackedScene" uid="uid://ci8gy2sr8agmf" path="res://Scenes/Game/Object/card.tscn" id="2_lg1h6"]
 [ext_resource type="PackedScene" uid="uid://8jrprxnanmaw" path="res://Assets/3D/Chips_fix/green_chips.tscn" id="3_neey8"]
 [ext_resource type="PackedScene" uid="uid://cp8kk3q43baog" path="res://Assets/3D/Chips_fix/red_chips.tscn" id="4_4fgt5"]
 [ext_resource type="PackedScene" uid="uid://co2h6tf8rxqly" path="res://Assets/3D/Chips_fix/white_chips.tscn" id="5_j4kqa"]
@@ -29,6 +31,7 @@ material = SubResource("StandardMaterial3D_ftsii")
 size = Vector3(1000, 1, 1000)
 
 [node name="MainMenu" type="Node3D" unique_id=1027467578]
+script = ExtResource("1_80s4p")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=598769728]
 environment = SubResource("Environment_anmaw")
@@ -43,57 +46,64 @@ spot_range = 11.454739
 spot_angle = 41.336563
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="background" unique_id=1859509209]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.387023, 0, 0)
+transform = Transform3D(0.045912802, 0, 0, 0, 1, 0, 0, 0, 0.034284223, -1.387023, 0, 0)
 mesh = SubResource("BoxMesh_lg1h6")
 
-[node name="Chips" type="Node3D" parent="background" unique_id=341217968]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7088487, 0, 1.1185765)
+[node name="MenuAnimation" type="Node3D" parent="background" unique_id=341217968]
+transform = Transform3D(-0.9581029, 0, 0.2864243, 0, 1, 0, -0.2864243, 0, -0.9581029, 1.7088487, 0, 1.1185765)
 script = ExtResource("1_chkef")
 
-[node name="BlackChips" parent="background/Chips" unique_id=160636676 instance=ExtResource("1_5wi6m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4162257, 0.497, 0)
+[node name="Card2" parent="background/MenuAnimation" unique_id=121556447 instance=ExtResource("2_lg1h6")]
+transform = Transform3D(0.6692059, 0.20533772, 0, -0.20533773, 0.6692059, 0, 0, -3.7252903e-09, 0.7, 2.324532, 0.9764718, -0.3961233)
 
-[node name="BlackChips2" parent="background/Chips" unique_id=1880857961 instance=ExtResource("1_5wi6m")]
-transform = Transform3D(0.31579813, 0, -0.9488264, 0, 1, 0, 0.9488264, 0, 0.31579813, -1.4162257, 0.6838852, 0)
+[node name="Card" parent="background/MenuAnimation" unique_id=319210554 instance=ExtResource("2_lg1h6")]
+transform = Transform3D(0.49252278, 0.17180821, 0.46680138, -0.08617973, 0.6764575, -0.15804483, -0.4898923, 0.053731237, 0.4971105, 1.6235428, 1.4479821, -0.39612335)
 
-[node name="BlackChips3" parent="background/Chips" unique_id=1839028457 instance=ExtResource("1_5wi6m")]
-transform = Transform3D(-0.24730343, 0, -0.96893823, 0, 1, 0, 0.96893823, 0, -0.24730343, -1.3798939, 0.8673413, 0)
+[node name="BlackChips" parent="background/MenuAnimation" unique_id=160636676 instance=ExtResource("1_5wi6m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0338604, 0.497, -0.39612317)
 
-[node name="BlackChips4" parent="background/Chips" unique_id=73731160 instance=ExtResource("1_5wi6m")]
-transform = Transform3D(-0.5167783, -0.5550773, -0.65178937, -0.33951232, 0.8317797, -0.43917468, 0.78592104, -0.005665467, -0.6183012, -2.386361, 1.0323651, 0)
+[node name="BlackChips2" parent="background/MenuAnimation" unique_id=1880857961 instance=ExtResource("1_5wi6m")]
+transform = Transform3D(0.31579813, 0, -0.94882643, 0, 1, 0, 0.94882643, 0, 0.31579813, -2.0338604, 0.6838852, -0.39612317)
 
-[node name="BlueChips" parent="background/Chips" unique_id=2112539599 instance=ExtResource("2_chkef")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9606507, 0.497, -2.1365469)
+[node name="BlackChips3" parent="background/MenuAnimation" unique_id=1839028457 instance=ExtResource("1_5wi6m")]
+transform = Transform3D(-0.2473034, 0, -0.96893823, 0, 1, 0, 0.96893823, 0, -0.2473034, -1.9975286, 0.8673413, -0.3961234)
 
-[node name="BlueChips2" parent="background/Chips" unique_id=1003057887 instance=ExtResource("2_chkef")]
-transform = Transform3D(0.86898583, 0, -0.49483696, 0, 1, 0, 0.49483696, 0, 0.86898583, -0.9606507, 0.6846719, -2.1365469)
+[node name="BlackChips4" parent="background/MenuAnimation" unique_id=73731160 instance=ExtResource("1_5wi6m")]
+transform = Transform3D(-0.51677835, -0.5550773, -0.65178937, -0.33951232, 0.8317797, -0.43917468, 0.78592116, -0.005665481, -0.6183012, -3.0039961, 1.0323651, -0.3961233)
 
-[node name="GreenChips" parent="background/Chips" unique_id=355056134 instance=ExtResource("3_neey8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2670381, 0.497, -2.8716238)
+[node name="BlueChips" parent="background/MenuAnimation" unique_id=2112539599 instance=ExtResource("2_chkef")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5782855, 0.497, -2.5326703)
 
-[node name="RedChips" parent="background/Chips" unique_id=192536726 instance=ExtResource("4_4fgt5")]
-transform = Transform3D(0.9786814, 0, -0.20538436, 0, 1, 0, 0.20538436, 0, 0.9786814, -0.23542607, 0.497, 1.5819974)
+[node name="BlueChips2" parent="background/MenuAnimation" unique_id=1003057887 instance=ExtResource("2_chkef")]
+transform = Transform3D(0.86898583, 0, -0.494837, 0, 1, 0, 0.494837, 0, 0.86898583, -1.5782855, 0.6846719, -2.5326703)
 
-[node name="RedChips6" parent="background/Chips" unique_id=653003925 instance=ExtResource("4_4fgt5")]
-transform = Transform3D(0.08269482, 0.04302396, -0.99564576, 0.034466483, 0.9983465, 0.04600334, 0.9959787, -0.038120657, 0.081075214, 1.4586837, 0.497, 2.869077)
+[node name="GreenChips" parent="background/MenuAnimation" unique_id=355056134 instance=ExtResource("3_neey8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.64940333, 0.497, -3.2677474)
 
-[node name="RedChips5" parent="background/Chips" unique_id=1505149670 instance=ExtResource("4_4fgt5")]
-transform = Transform3D(0.98218244, 0, 0.1879299, 0, 1, 0, -0.1879299, 0, 0.98218244, 1.7706275, 0.497, 0.8912332)
+[node name="RedChips" parent="background/MenuAnimation" unique_id=192536726 instance=ExtResource("4_4fgt5")]
+transform = Transform3D(0.97868127, 0, -0.20538434, 0, 1, 0, 0.20538434, 0, 0.97868127, -0.8530605, 0.497, 1.1858742)
 
-[node name="RedChips2" parent="background/Chips" unique_id=296689236 instance=ExtResource("4_4fgt5")]
-transform = Transform3D(0.86001265, 0, -0.51027274, 0, 1, 0, 0.51027274, 0, 0.86001265, 0.9845345, 0.6719465, 1.7725387)
+[node name="RedChips6" parent="background/MenuAnimation" unique_id=653003925 instance=ExtResource("4_4fgt5")]
+transform = Transform3D(0.08269484, 0.043023963, -0.9956459, 0.034466483, 0.9983465, 0.04600334, 0.9959787, -0.038120657, 0.08107525, 0.8410491, 0.497, 2.4729538)
 
-[node name="RedChips3" parent="background/Chips" unique_id=320932837 instance=ExtResource("4_4fgt5")]
-transform = Transform3D(0.9922041, 0, 0.12462326, 0, 1, 0, -0.12462326, 0, 0.9922041, 1.4533055, 0.8422279, 1.7725387)
+[node name="RedChips5" parent="background/MenuAnimation" unique_id=1505149670 instance=ExtResource("4_4fgt5")]
+transform = Transform3D(0.98218244, 0, 0.18792991, 0, 1, 0, -0.18792991, 0, 0.98218244, 1.1529931, 0.497, 0.49510998)
 
-[node name="RedChips4" parent="background/Chips" unique_id=311479066 instance=ExtResource("4_4fgt5")]
-transform = Transform3D(0.8314696, 0, 0.55557024, 0, 1, 0, -0.55557024, 0, 0.8314696, 1.1355786, 1.0195069, 1.7725387)
+[node name="RedChips2" parent="background/MenuAnimation" unique_id=296689236 instance=ExtResource("4_4fgt5")]
+transform = Transform3D(0.86001265, 0, -0.5102728, 0, 1, 0, 0.5102728, 0, 0.86001265, 0.36689997, 0.6719465, 1.3764155)
 
-[node name="WhiteChips" parent="background/Chips" unique_id=1342038984 instance=ExtResource("5_j4kqa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6597533, 0.497, -0.8535533)
+[node name="RedChips3" parent="background/MenuAnimation" unique_id=320932837 instance=ExtResource("4_4fgt5")]
+transform = Transform3D(0.99220425, 0, 0.124623284, 0, 1, 0, -0.124623284, 0, 0.99220425, 0.8356708, 0.8422279, 1.3764153)
+
+[node name="RedChips4" parent="background/MenuAnimation" unique_id=311479066 instance=ExtResource("4_4fgt5")]
+transform = Transform3D(0.8314696, 0, 0.55557024, 0, 1, 0, -0.55557024, 0, 0.8314696, 0.517944, 1.0195069, 1.3764155)
+
+[node name="WhiteChips" parent="background/MenuAnimation" unique_id=1342038984 instance=ExtResource("5_j4kqa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04211867, 0.497, -1.2496766)
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=183300659]
 transform = Transform3D(1, 0, 0, 0, 0.9427522, 0.33349428, 0, -0.33349428, 0.9427522, -0.926, 3.043, 6.698)
+fov = 80.0
 
 [node name="Main_menu_UI" type="Control" parent="Camera3D" unique_id=317774016]
 layout_mode = 3
@@ -111,61 +121,68 @@ offset_top = 30.0
 offset_right = 220.0
 offset_bottom = 70.0
 theme_override_fonts/font = ExtResource("7_4fgt5")
-theme_override_font_sizes/font_size = 58
+theme_override_font_sizes/font_size = 75
 text = "BLACKJACK"
 uppercase = true
 
 [node name="Main_menu_button" type="VBoxContainer" parent="Camera3D/Main_menu_UI" unique_id=1064026637]
+custom_minimum_size = Vector2(200, 300)
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -12.0
-offset_right = 160.0
-offset_bottom = 251.0
+anchors_preset = -1
+anchor_top = 0.4148148
+anchor_right = 0.1388889
+anchor_bottom = 0.7888889
+offset_right = -1.5258789e-05
+grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 12
+metadata/_edit_use_anchors_ = true
 
 [node name="NEW" type="Button" parent="Camera3D/Main_menu_UI/Main_menu_button" unique_id=2121657937]
+custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("8_j4kqa")
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 35
 text = "NEW GAME"
 alignment = 0
 icon_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="CONTINUE" type="Button" parent="Camera3D/Main_menu_UI/Main_menu_button" unique_id=410699277]
+custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("8_j4kqa")
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 35
 text = "CONTINUE"
 alignment = 0
 icon_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="SETTINGS" type="Button" parent="Camera3D/Main_menu_UI/Main_menu_button" unique_id=99425258]
+custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("8_j4kqa")
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 35
 text = "SETTINGS"
 alignment = 0
 icon_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="ABOUT" type="Button" parent="Camera3D/Main_menu_UI/Main_menu_button" unique_id=915900564]
+custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("8_j4kqa")
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 35
 text = "ABOUT"
 alignment = 0
 icon_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="QUIT" type="Button" parent="Camera3D/Main_menu_UI/Main_menu_button" unique_id=617397374]
+custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("8_j4kqa")
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 35
 text = "QUIT"
 alignment = 0
 icon_alignment = 1

@@ -120,18 +120,20 @@ var sound = []
 
 
 func play_sound(id):
-	if audio_source.playing:
-		audio_source.stop()
-	var list_of_sound = sound[id]
-	audio_source.stream = list_of_sound.pick_random()
-	audio_source.play();
+	if DataManager.sound_settings:
+		if audio_source.playing:
+			audio_source.stop()
+		var list_of_sound = sound[id]
+		audio_source.stream = list_of_sound.pick_random()
+		audio_source.play();
 
 
 func play_background():
-	change.play()
-	await change.finished;
-	background_sound.stream = all_bg.pick_random()
-	background_sound.play()
+	if DataManager.sound_settings:
+		change.play()
+		await change.finished;
+		background_sound.stream = all_bg.pick_random()
+		background_sound.play()
 
 func Skip_song() -> void :
 	$Camera3D/Game_UI/Skip_Song.disabled = true
@@ -221,17 +223,26 @@ func actu_GMState(id: int) -> void:
 
 		9:
 			GameState_Label.text = "No more money ?\nGood Bye, see you next time !"
-			set_game_ui(false, false, false, true)
+			await get_tree().create_timer(2.0).timeout
+			DataManager.have_a_game = false
+			save_manager.save_game(DataManager.get_dict())
+			print(DataManager.get_dict())
+			get_tree().change_scene_to_file("res://Scenes/Menus/main_menu.tscn")
 
 		_:
 			await actu_GMState(0)
 
+func _exit_tree() -> void:
+	print(DataManager.get_dict())
+	save_manager.save_game(DataManager.get_dict())
+	
 
 func reset_all():
 	Chips.reset_all()
 	PlayerCards.reset_all()
 	DealerCards.reset_all()
 	bet = 0
+	DataManager.bet = bet
 	type_win = 0
 	card_in_deck = 52
 	used_card = []
@@ -326,6 +337,7 @@ func i_have_money(id) -> void:
 	if DataManager.money >= values[id]:
 		DataManager.money -= values[id]
 		bet += values[id]
+		DataManager.bet = bet
 		Chips.add_chips(id)
 		play_sound(1)
 	else:

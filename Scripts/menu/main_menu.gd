@@ -1,20 +1,28 @@
 extends Control
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
+@onready var continue_button =  $Main_menu_button/CONTINUE
+
+
+func setup_menu() -> void:
+	continue_button.disabled = !DataManager.have_a_game
+	
 	var fullscreenMode = DisplayServer.window_get_mode()
 	if fullscreenMode < 3 : 
-		toggleOFF($SettingsMenu/SettingsItems/Fullscreen/FullscreenSwitch)
+		toggle($SettingsMenu/SettingsItems/Fullscreen/FullscreenSwitch, false)
+	toggle($SettingsMenu/SettingsItems/Sound/SoundsSwitch, DataManager.sound_settings)
 
-func toggleON(item: Variant) -> void : 
-	item.text = "ON"
-	item.modulate = Color(0.0, 1.0, 0.0)
-	item.button_pressed = true
+func toggle(item: Variant, value: bool) -> void : 
+	match value:
+		true:
+			item.text = "ON"
+			item.modulate = Color(0.0, 1.0, 0.0)
+			item.button_pressed = true
+		false:
+			item.text = "OFF"
+			item.modulate = Color(1.0, 0.0, 0.0)
+			item.button_pressed = false
+	
 
-func toggleOFF(item: Variant) -> void : 
-	item.text = "OFF"
-	item.modulate = Color(1.0, 0.0, 0.0)
-	item.button_pressed = false
 
 func showM(item: Variant) -> void : 
 	item.show()
@@ -23,7 +31,7 @@ func hideM(item: Variant) -> void :
 	item.hide()
 
 func _on_new_pressed() -> void:
-	DataManager.reset_the_game()
+	DataManager.new_game()
 	get_tree().change_scene_to_file("res://Scenes/Game/game.tscn")
 
 func _on_continue_pressed() -> void:
@@ -36,6 +44,7 @@ func _on_about_pressed() -> void:
 	showM($AboutMenu)
 
 func _on_quit_pressed() -> void:
+	
 	get_tree().quit()
 
 func _on_about_back_pressed() -> void:
@@ -44,18 +53,14 @@ func _on_about_back_pressed() -> void:
 func _on_settings_back_pressed() -> void:
 	hideM($SettingsMenu)
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("fullscreen"):
+		DataManager.set_fullscreen(!DataManager.fullscreen_mode)
+
 func _on_sounds_switch_toggled(toggled_on: bool) -> void:
-	if toggled_on :
-		toggleON($SettingsMenu/SettingsItems/Sound/SoundsSwitch)
-		DataManager.set_sound_setting(true)
-	else : 
-		toggleOFF($SettingsMenu/SettingsItems/Sound/SoundsSwitch)
-		DataManager.set_sound_setting(false)
+	toggle($SettingsMenu/SettingsItems/Sound/SoundsSwitch,toggled_on)
+	DataManager.set_sound_setting(toggled_on)
 
 func _on_fullscreen_switch_toggled(toggled_on: bool) -> void:
-	if toggled_on :
-		toggleON($SettingsMenu/SettingsItems/Fullscreen/FullscreenSwitch)
-		DataManager.set_fullscreen_mode(true)
-	else : 
-		toggleOFF($SettingsMenu/SettingsItems/Fullscreen/FullscreenSwitch)
-		DataManager.set_fullscreen_mode(false)
+	toggle($SettingsMenu/SettingsItems/Fullscreen/FullscreenSwitch, toggled_on)
+	DataManager.set_fullscreen(toggled_on)
