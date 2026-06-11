@@ -11,9 +11,55 @@ extends Node3D
 
 @onready var audio_source = $audio_source
 @onready var  background_sound = $Background_sound
+@onready var  change = $change
 
-@onready var all_bg = [preload("res://Assets/Audio/Background_sound-1.mp3")]
+var all_bg = [
+	preload("res://Assets/Audio/Background_sound-1.mp3"),
+	preload("res://Assets/Audio/Background_sound-2.mp3"),
+	preload("res://Assets/Audio/Background_sound-3.mp3"),
+	preload("res://Assets/Audio/Background_sound-4.mp3"),
+	preload("res://Assets/Audio/Background_sound-5.mp3"),
+	preload("res://Assets/Audio/Background_sound-6.mp3"),
+	preload("res://Assets/Audio/Background_sound-7.mp3"),
+	preload("res://Assets/Audio/Background_sound-8.mp3"),
+	preload("res://Assets/Audio/Background_sound-9.mp3"),
+	preload("res://Assets/Audio/Background_sound-10.mp3"),
+	preload("res://Assets/Audio/Background_sound-11.mp3"),
+	preload("res://Assets/Audio/Background_sound-12.mp3"),
+	preload("res://Assets/Audio/Background_sound-13.mp3"),
+	preload("res://Assets/Audio/Background_sound-14.mp3"),
+	preload("res://Assets/Audio/Background_sound-15.mp3"),
+	preload("res://Assets/Audio/Background_sound-16.mp3"),
+	preload("res://Assets/Audio/Background_sound-17.mp3"),
+	preload("res://Assets/Audio/Background_sound-18.mp3"),
+	preload("res://Assets/Audio/Background_sound-19.mp3"),
+	preload("res://Assets/Audio/Background_sound-20.mp3"),
+	preload("res://Assets/Audio/Background_sound-21.mp3"),
+	preload("res://Assets/Audio/Background_sound-22.mp3"),
+	preload("res://Assets/Audio/Background_sound-23.mp3"),
+	preload("res://Assets/Audio/Background_sound-24.mp3"),
+	preload("res://Assets/Audio/Background_sound-25.mp3"),
+	preload("res://Assets/Audio/Background_sound-26.mp3"),
+	preload("res://Assets/Audio/Background_sound-27.mp3"),
+	preload("res://Assets/Audio/Background_sound-28.mp3"),
+	preload("res://Assets/Audio/Background_sound-29.mp3"),
+	preload("res://Assets/Audio/Background_sound-30.mp3"),
+	preload("res://Assets/Audio/Background_sound-31.mp3"),
+	preload("res://Assets/Audio/Background_sound-32.mp3"),
+	preload("res://Assets/Audio/Background_sound-33.mp3"),
+	preload("res://Assets/Audio/Background_sound-34.mp3"),
+	preload("res://Assets/Audio/Background_sound-35.mp3"),
+	preload("res://Assets/Audio/Background_sound-36.mp3"),
+	preload("res://Assets/Audio/Background_sound-37.mp3"),
+	preload("res://Assets/Audio/Background_sound-38.mp3"),
+	preload("res://Assets/Audio/Background_sound-39.mp3"),
+	preload("res://Assets/Audio/Background_sound-40.mp3"),
+	preload("res://Assets/Audio/Background_sound-41.mp3"),
+	preload("res://Assets/Audio/Background_sound-42.mp3"),
+	preload("res://Assets/Audio/Background_sound-43.mp3"),
+]
 
+var change_sound = preload("res://Assets/Audio/Change_song.mp3")
 
 func _on_background_sound_finished() -> void:
 	play_background()
@@ -38,6 +84,8 @@ func _on_background_sound_finished() -> void:
 	preload("res://Assets/Audio/chips-stack-5.ogg"),
 	preload("res://Assets/Audio/chips-stack-6.ogg")
 ]
+
+
 
 var bet = 0
 var state = 0
@@ -75,17 +123,25 @@ func play_sound(id):
 	if audio_source.playing:
 		audio_source.stop()
 	var list_of_sound = sound[id]
-	audio_source.stream = list_of_sound[randi_range(0, list_of_sound.size()-1)]
+	audio_source.stream = list_of_sound.pick_random()
 	audio_source.play();
 
 
 func play_background():
-	background_sound.stream = all_bg[randi_range(0, all_bg.size()-1)]
+	change.play()
+	await change.finished;
+	background_sound.stream = all_bg.pick_random()
 	background_sound.play()
+
+func Skip_song() -> void :
+	$Camera3D/Game_UI/Skip_Song.disabled = true
+	background_sound.stop()
+	await play_background()
+	$Camera3D/Game_UI/Skip_Song.disabled = false
 
 func _ready() -> void:
 	sound = [card_place, chips_sound]
-	play_background()
+	Skip_song()
 	PlayerCards.is_player()
 	DealerCards.isnt_player()
 	actu_info()
@@ -304,3 +360,7 @@ func _on_bet_blue_pressed() -> void:
 func _on_new_game_pressed() -> void:
 	reset_all()
 	await actu_GMState(0)
+
+
+func _on_skip_song_pressed() -> void:
+	Skip_song()
