@@ -6,6 +6,8 @@ var fullscreen_mode = true;
 var start_money = 20
 var money = 20
 
+
+
 func reset_all_settings() -> void:
 	pass
 

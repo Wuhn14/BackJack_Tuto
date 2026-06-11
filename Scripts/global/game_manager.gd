@@ -9,6 +9,35 @@ extends Node3D
 @onready var PlayerCards = $PlayerCards
 @onready var DealerCards = $DealerCards
 
+@onready var audio_source = $audio_source
+@onready var  background_sound = $Background_sound
+
+@onready var all_bg = [preload("res://Assets/Audio/Background_sound-1.mp3")]
+
+
+func _on_background_sound_finished() -> void:
+	play_background()
+
+@onready var card_place = [
+	preload("res://Assets/Audio/card-place-1.ogg"),
+	preload("res://Assets/Audio/card-place-2.ogg"),
+	preload("res://Assets/Audio/card-place-3.ogg"),
+	preload("res://Assets/Audio/card-place-4.ogg")
+]
+
+@onready var chips_sound = [
+	preload("res://Assets/Audio/chip-lay-1.ogg"),
+	preload("res://Assets/Audio/chip-lay-2.ogg"),
+	preload("res://Assets/Audio/chips-collide-1.ogg"),
+	preload("res://Assets/Audio/chips-collide-2.ogg"),
+	preload("res://Assets/Audio/chips-collide-3.ogg"),
+	preload("res://Assets/Audio/chips-collide-4.ogg"),
+	preload("res://Assets/Audio/chips-stack-1.ogg"),
+	preload("res://Assets/Audio/chips-stack-2.ogg"),
+	preload("res://Assets/Audio/chips-stack-4.ogg"),
+	preload("res://Assets/Audio/chips-stack-5.ogg"),
+	preload("res://Assets/Audio/chips-stack-6.ogg")
+]
 
 var bet = 0
 var state = 0
@@ -24,20 +53,43 @@ var values = [
 	1,5,25,100,500
 ]
 
-@onready var state_text = [
-	"Place your beat", #0
-	"Dealers giving card...",#1
-	"your turn",#2
-	"dealer turn",#3
-	
-	"You WIN ! \n" + str(bet*multiply_Win[type_win]) + " for you !",#4
-	"You Lose ! \n" + str(bet) + " for the dealers",#5
-	"DRAW ! " + str(bet) + " return",#6
-	"BLACKJACK !\n" + str(bet*multiply_Win[type_win]) + " for you !",#7
-	"New Game ?", #8
-	"No mor money ? \n Good Bye, see you next time !", #9
-]
+var sound = []
 
+#@onready var state_text = [
+#	"Place your beat", #0
+#	"Dealers giving card...",#1
+#	"your turn",#2
+#	"dealer turn",#3
+#	
+#	"You WIN ! \n" + str(bet*multiply_Win[type_win]) + " for you !",#4
+#	"You Lose ! \n" + str(bet) + " for the dealers",#5
+#	"DRAW ! " + str(bet) + " return",#6
+#	"BLACKJACK !\n" + str(bet*multiply_Win[type_win]) + " for you !",#7
+#	"New Game ?", #8
+#	"No mor money ? \n Good Bye, see you next time !", #9
+#]
+
+
+
+func play_sound(id):
+	if audio_source.playing:
+		audio_source.stop()
+	var list_of_sound = sound[id]
+	audio_source.stream = list_of_sound[randi_range(0, list_of_sound.size()-1)]
+	audio_source.play();
+
+
+func play_background():
+	background_sound.stream = all_bg[randi_range(0, all_bg.size()-1)]
+	background_sound.play()
+
+func _ready() -> void:
+	sound = [card_place, chips_sound]
+	play_background()
+	PlayerCards.is_player()
+	DealerCards.isnt_player()
+	actu_info()
+	await actu_GMState(0)
 
 func set_game_ui(mise_visible: bool, info_visible: bool, hitstand_visible: bool, newgame_visible: bool) -> void:
 	if mise_visible:
@@ -119,12 +171,6 @@ func actu_GMState(id: int) -> void:
 			await actu_GMState(0)
 
 
-func _ready() -> void:
-	PlayerCards.is_player()
-	DealerCards.isnt_player()
-	actu_info()
-	await actu_GMState(0)
-
 func reset_all():
 	Chips.reset_all()
 	PlayerCards.reset_all()
@@ -143,8 +189,11 @@ func actu_info():
 	YourBet_Label.text = "You bet : " + str(bet)
 
 func Player_take_card():
+	play_sound(0)
 	playerScore = await PlayerCards.take_one_card(playerScore, card_in_deck, used_card)
+
 func Dealer_take_card():
+	play_sound(0)
 	dealerScore = await DealerCards.take_one_card(dealerScore, card_in_deck, used_card)
 
 func distrib_card():
@@ -188,8 +237,8 @@ func who_win():
 		await actu_GMState(5)
 	
 
-func end_game(state):
-	type_win = state-4
+func end_game(id):
+	type_win = id-4
 	DataManager.money += bet*multiply_Win[type_win] 
 	if DataManager.money <= 0:
 		finish_game()
@@ -222,6 +271,7 @@ func i_have_money(id) -> void:
 		DataManager.money -= values[id]
 		bet += values[id]
 		Chips.add_chips(id)
+		play_sound(1)
 	else:
 		warningMessDialog("You have only " + str(DataManager.money) + ", you can't bet " + str(values[id]) + " !")
 	actu_info()

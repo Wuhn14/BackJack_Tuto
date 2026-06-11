@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ci8gy2sr8agmf"]
 
-[ext_resource type="Script" uid="uid://r7ahvrqgunso" path="res://Assets/3D/Card/card.gd" id="1_3c6jg"]
+[ext_resource type="Script" uid="uid://r7ahvrqgunso" path="res://Scripts/global/card.gd" id="1_3c6jg"]
 [ext_resource type="Texture2D" uid="uid://bp15yqlaxivh3" path="res://Assets/Texture/Card/card_back.png" id="2_2e3e2"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_qvomo"]
